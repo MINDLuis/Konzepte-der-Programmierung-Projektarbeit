@@ -9,7 +9,7 @@ public class Krieger extends Spielfigur implements Angriffskraft {
 
     @Override
     public int fuehreAngriffAus() {
-        return angriffswert;
+        return verstaerkeAngriff();
     }
 
     @Override

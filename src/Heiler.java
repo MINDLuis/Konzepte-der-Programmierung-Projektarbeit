@@ -4,6 +4,9 @@ public class Heiler extends Spielfigur implements Heilfaehig {
 
     public Heiler(String name, int lebenspunkte, int angriffswert, int heilkraft) {
         super(name, lebenspunkte, angriffswert);
+        if (heilkraft < 0) {
+            throw new IllegalArgumentException("Die Heilkraft darf nicht negativ sein.");
+        }
         this.heilkraft = heilkraft;
     }
 
@@ -13,10 +16,16 @@ public class Heiler extends Spielfigur implements Heilfaehig {
     }
 
     @Override
-    public void heile() {
-        lebenspunkte = lebenspunkte + heilkraft;
-        System.out.println(
-                name + " heilt sich um " + heilkraft + " Lebenspunkte."
-        );
+    public void heile(Spielfigur ziel) {
+        if (ziel == null) {
+            throw new IllegalArgumentException("Das Heilungsziel darf nicht null sein.");
+        }
+
+        int geheilt = ziel.erhalteHeilung(heilkraft);
+        if (geheilt == 0) {
+            System.out.println(getName() + " kann " + ziel.getName() + " nicht weiter heilen.");
+            return;
+        }
+        System.out.println(getName() + " heilt " + ziel.getName() + " um " + geheilt + " Lebenspunkte.");
     }
 }

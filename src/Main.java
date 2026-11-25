@@ -6,11 +6,14 @@ public class Main {
 
         Magier gegner = new Magier("Magier", 80, 15, 25);
 
+        Krieger magierKrieger = new Krieger("Krieger des Magiers", 100, 20, 10);
+
         Heiler unterstuetzung = new Heiler("Heiler", 90, 10, 15);
 
         System.out.println("Alle Figuren:");
         held.zeigeStatus();
         gegner.zeigeStatus();
+        magierKrieger.zeigeStatus();
         unterstuetzung.zeigeStatus();
         System.out.println();
 
@@ -22,10 +25,9 @@ public class Main {
         System.out.println("Schaden: " + gegner.fuehreZauberAus());
         System.out.println();
 
-        System.out.println("Der Heiler heilt sich:");
-        unterstuetzung.heile();
-        System.out.println();
-
-        Kampf.starteKampf(held, gegner);
+        Kampf.starteKampf(
+                new Spielfigur[] { gegner, magierKrieger },
+                new Spielfigur[] { held, unterstuetzung }
+        );
     }
 }

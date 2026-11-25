@@ -9,7 +9,7 @@ public class Magier extends Spielfigur implements Angriffskraft, Zauberfaehig {
 
     @Override
     public int fuehreAngriffAus() {
-        return angriffswert;
+        return fuehreZauberAus();
     }
 
     @Override

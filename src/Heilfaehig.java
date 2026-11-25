@@ -1,4 +1,4 @@
 public interface Heilfaehig {
 
-    void heile();
+    void heile(Spielfigur ziel);
 }
